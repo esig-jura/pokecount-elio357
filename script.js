@@ -1,63 +1,75 @@
 /**
- * Fichier JavaScript pour l'application PokeCount.
- * @author Steve Fallet <steve.fallet@divtec.ch>
- * @version 1.0 (Version actuelle)
- * @since 2024-01-31 (Date de création)
+ * Fichier principal JS pour l’application PokeCount.
+ * Auteur, version et date renseignés en commentaire.
  */
 
-"use strict";
+"use strict"; // Active le mode strict pour éviter certaines erreurs JavaScript.
 
-// Récupération des éléments HTML
-let sauvegardeEl = document.getElementById("sauvegarde-el");
-let compteurEl = document.getElementById("compteur-el");
-const capturerBtn = document.getElementById("capturer-btn");
-const sauvegarderBtn = document.getElementById("sauvegarder-btn");
+// --- Sélection des éléments HTML par leur ID ---
+const sauvegardeEl = document.getElementById("sauvegarde-el"); // Liste des captures sauvegardées
+const compteurEl = document.getElementById("compteur-el");     // Affichage du compteur
+const capturerBtn = document.getElementById("capturer-btn");   // Bouton "CAPTURER"
+const sauvegarderBtn = document.getElementById("sauvegarder-btn"); // Bouton "SAUVEGARDER"
+const resetBtn = document.getElementById("reset-btn");         // Bouton "RESET"
+console.log(resetBtn); // Affiche l’élément resetBtn dans la console (pour debug).
 
-// Gestion des événements
-capturerBtn.addEventListener("click", capturer);
-sauvegarderBtn.addEventListener("click", sauvegarder);
+// --- Ajout des écouteurs d’événements sur les boutons ---
+capturerBtn.addEventListener("click", capturer);      // Clique sur "CAPTURER" → fonction capturer()
+sauvegarderBtn.addEventListener("click", sauvegarder);// Clique sur "SAUVEGARDER" → fonction sauvegarder()
+resetBtn.addEventListener("click", reset);            // Clique sur "RESET" → fonction reset()
 
-// Initialisation du compteur
-let compteur = 0
+// --- Initialisation du compteur ---
+let compteur = 0; // Nombre de Pokémon capturés en cours
 
 /**
- * Fonction qui :
- *   * incrémente le compteur
- *   * affiche la nouvelle valeur dans le HTML
- *   * change la couleur du texte en fonction de la valeur
+ * Fonction capturer :
+ * - Incrémente le compteur
+ * - Met à jour l’affichage
+ * - Change la couleur selon la valeur
  */
 function capturer() {
-    compteur += 1; // Incrémenter le compteur de 1
+    compteur += 1; // +1 capture
+    compteurEl.textContent = compteur; // Affiche la nouvelle valeur
 
-    compteurEl.textContent = compteur; // Mettre à jour le texte de l'élément <h2>
-
-    // Changer la couleur du texte en fonction de la valeur du compteur
+    // Couleur selon le nombre de captures
     if (compteur < 5) {
-        compteurEl.style.color = "green"; // Couleur verte pour moins de 5 captures
+        compteurEl.style.color = "green"; // Moins de 5 → vert
     } else if (compteur < 10) {
-        compteurEl.style.color = "yellow"; // Couleur jaune pour 5 à 9 captures
+        compteurEl.style.color = "yellow"; // 5 à 9 → jaune
     } else {
-        compteurEl.style.color = "red"; // Couleur rouge pour 10 captures ou plus
+        compteurEl.style.color = "red"; // 10 ou plus → rouge
     }
 }
 
 /**
- * Fonction qui :
- *  * Ajoute la dernière capture au texte de sauvegarde
- *  * réinitialise le compteur à 0
- *  * met à jour le compteur dans le HTML
- *
+ * Fonction sauvegarder :
+ * - Ajoute la capture à la liste (en HTML)
+ * - Sauvegarde la liste dans le localStorage
+ * - Réinitialise le compteur
  */
 function sauvegarder() {
-    let compteurStr = compteur + " Pokémons - ";
-    sauvegardeEl.textContent += compteurStr; // Ajouter la valeur actuelle du compteur
-    localStorage.setItem("captures", sauvegardeEl.textContent); // Sauvegarder les captures dans le localStorage
-    compteur = 0;
-    compteurEl.textContent = compteur;
+    let compteurStr = `<li>${compteur} Pokémons</li>`; // Format d’une capture
+    sauvegardeEl.innerHTML += compteurStr; // Ajoute à la liste affichée
+    localStorage.setItem("captures", sauvegardeEl.innerHTML); // Sauvegarde dans le navigateur
+    compteur = 0; // Remet à zéro
+    compteurEl.textContent = compteur; // Met à jour l’affichage
 }
 
-// Attendre que la page soit chargée pour exécuter le code
+/**
+ * Fonction reset :
+ * - Remet le compteur à zéro
+ * - Vide la liste des captures
+ * - Supprime la sauvegarde du navigateur
+ */
+function reset() {
+    compteur = 0;
+    compteurEl.textContent = compteur;
+    compteurEl.style.color = "black"; // Couleur par défaut
+    sauvegardeEl.textContent = ""; // Vide la liste
+    localStorage.removeItem("captures"); // Supprime la sauvegarde
+}
+
+// --- Au chargement de la page, recharge les captures sauvegardées ---
 window.addEventListener("load", () => {
-    // Charger les captures sauvegardées dans localStorage ou une chaîne vide
-    sauvegardeEl.textContent = localStorage.getItem("captures") || "";
+    sauvegardeEl.innerHTML = localStorage.getItem("captures") || ""; // Restaure la liste ou vide si rien
 });

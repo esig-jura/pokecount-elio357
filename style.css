@@ -1,43 +1,51 @@
 body {
-    background-color: #7AC74C;
-    background-image: url("pokemon-bg.webp");
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: bold;
-    text-align: center;
+    background-color: #7AC74C; /* Couleur de fond principale */
+    background-image: url("pokemon-bg.webp"); /* Image de fond */
+    background-size: cover; /* L'image couvre tout l'écran */
+    background-repeat: no-repeat; /* Pas de répétition de l'image */
+    font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Police de caractères */
+    font-weight: bold; /* Texte en gras */
+    text-align: center; /* Centrage du texte */
 }
 
 h1 {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 10px; /* Marge supérieure */
+    margin-bottom: 10px; /* Marge inférieure */
 }
 
 h2 {
-    font-size: 50px;
-    margin-top: 0;
-    margin-bottom: 20px;
+    font-size: 50px; /* Taille de police importante */
+    margin-top: 0; /* Pas de marge en haut */
+    margin-bottom: 20px; /* Marge en bas */
 }
 
 button {
-    border: none;
+    border: none; /* Pas de bordure */
     padding-top: 10px;
     padding-bottom: 10px;
-    color: white;
-    font-weight: bold;
-    width: 200px;
-    margin-bottom: 5px;
-    border-radius: 5px;
+    color: white; /* Texte blanc */
+    font-weight: bold; /* Texte en gras */
+    width: 200px; /* Largeur fixe */
+    margin-bottom: 5px; /* Marge en bas */
+    border-radius: 5px; /* Bords arrondis */
 }
 
 #capturer-btn {
-    background: #EE1C24;
+    background: #da1b0d; /* Couleur de fond spécifique pour le bouton CAPTURER */
 }
 
 #sauvegarder-btn {
-    background: #7AC74C;
+    background: #7cc76c; /* Couleur de fond spécifique pour le bouton SAUVEGARDER */
 }
 
 #reset-btn {
-    background: darkblue;
+    background: #9e225d; /* Couleur de fond spécifique pour le bouton RESET */
+}
+
+#sauvegarde-el {
+    max-width: 200px; /* Largeur maximale de la liste */
+    margin: 0 auto; /* Centrage horizontal */
+    background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+    list-style-type: none; /* Pas de puces */
+    padding: 10px; /* Espacement intérieur */
 }

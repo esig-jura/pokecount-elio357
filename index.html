@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Pokémon capturés</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8"> <!-- Encodage des caractères en UTF-8 -->
+    <title>PokeCount - Pokémon capturés</title> <!-- Titre de la page -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design -->
+    <link rel="stylesheet" href="style.css"> <!-- Lien vers la feuille de style CSS -->
 </head>
 <body>
+<!-- Titre principal -->
 <h1>Pokémon capturés</h1>
+<!-- Affichage du compteur de Pokémon capturés -->
 <h2 id="compteur-el">0</h2>
+<!-- Bouton pour incrémenter le compteur -->
 <button id="capturer-btn">CAPTURER</button>
+<!-- Bouton pour sauvegarder le compteur -->
 <button id="sauvegarder-btn">SAUVEGARDER</button>
-<button id="reset-btn">Reset</button>
-<p id="sauvegarde-el">Mes captures : </p>
+<!-- Bouton pour réinitialiser le compteur et l'historique -->
+<button id="reset-btn">RESET</button>
+<!-- Légende pour la liste des captures -->
+<p>Mes captures :</p>
+<!-- Liste des captures sauvegardées (remplie dynamiquement en JS) -->
+<ul id="sauvegarde-el">
+</ul>
+<!-- Inclusion du script JavaScript principal -->
 <script src="script.js"></script>
 </body>
 </html>
